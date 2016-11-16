@@ -63,7 +63,7 @@ namespace MerchantGuideToGalaxy
         private void ProcessInfo(string line)
         {
             
-            string good = IdentifyMetal(line);
+            string good = ExtractMetalFromLine(line);
             int price = 0;
             
             int indexOfMetalInLine = line.IndexOf(good);
@@ -77,17 +77,17 @@ namespace MerchantGuideToGalaxy
             _goodToUnitPrice.Add(good, (double)price / units);
         }
 
-        public string IdentifyMetal(string s)
+        public string ExtractMetalFromLine(string line)
         {
             foreach (string metal in Metals)
             {
-                if (s.Contains(metal))
+                if (line.Contains(metal))
                 {
                     return metal;
                 }
             }
 
-            return string.Empty;
+            throw new ArgumentOutOfRangeException("metal", "No such metal mentioned in the file");
         }
 
         public int GetGalaxyUnitStringValue(string s)
@@ -98,11 +98,6 @@ namespace MerchantGuideToGalaxy
 
             foreach (string unit in units)
             {
-                if (GetGalaxyUnitRomanSymbol(unit) == '\0')
-                {
-                    return -1;
-                }
-
                 romanSymobolString += GetGalaxyUnitRomanSymbol(unit);
             }
 
@@ -121,7 +116,7 @@ namespace MerchantGuideToGalaxy
 
             else
             {
-                return '\0';
+                throw new ArgumentOutOfRangeException("unit", "No such unit exists in the file");
             }
             
         }

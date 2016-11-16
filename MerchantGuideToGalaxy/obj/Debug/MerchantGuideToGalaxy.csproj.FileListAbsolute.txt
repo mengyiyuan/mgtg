@@ -3,3 +3,4 @@ D:\Codes\Github\MerchantGuideToGalaxy\MerchantGuideToGalaxy\bin\Debug\MerchantGu
 D:\Codes\Github\MerchantGuideToGalaxy\MerchantGuideToGalaxy\bin\Debug\MerchantGuideToGalaxy.pdb
 D:\Codes\Github\MerchantGuideToGalaxy\MerchantGuideToGalaxy\obj\Debug\MerchantGuideToGalaxy.exe
 D:\Codes\Github\MerchantGuideToGalaxy\MerchantGuideToGalaxy\obj\Debug\MerchantGuideToGalaxy.pdb
+D:\Codes\Github\MerchantGuideToGalaxy\MerchantGuideToGalaxy\obj\Debug\MerchantGuideToGalaxy.csprojResolveAssemblyReference.cache

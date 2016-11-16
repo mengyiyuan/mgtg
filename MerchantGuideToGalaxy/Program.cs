@@ -30,12 +30,6 @@ namespace MerchantGuideToGalaxy
 
             //Console.WriteLine(file.GetGalaxyUnitStringValue("blahblah"));
 
-            //string testS = "IM";
-
-            //RomanSymbolString test = new RomanSymbolString(testS);
-
-            //Console.WriteLine(test.GetValue());
-
             Console.ReadLine();
         }
     }

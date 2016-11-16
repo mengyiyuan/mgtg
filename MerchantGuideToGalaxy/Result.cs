@@ -47,7 +47,7 @@ namespace MerchantGuideToGalaxy
             {
                 qHeader = "how many Credits is ";
 
-                string metal = _f.IdentifyMetal(q);
+                string metal = _f.ExtractMetalFromLine(q);
 
                 int units = _f.GetGalaxyUnitStringValue(q.Substring("how many Credits is ".Length, (q.IndexOf(metal) - qHeader.Length)).Trim());
 
