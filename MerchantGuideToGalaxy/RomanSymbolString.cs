@@ -59,9 +59,9 @@ namespace MerchantGuideToGalaxy
         {
             int length = input.Length;
 
-            bool validRepeat = checkRepeatPattern(input);
-            bool validSubstract = checkSubstractPattern(input);
-            bool validSubstract2 = checkSubstract2(input);
+            bool validRepeat = checkRepeatPattern();
+            bool validSubstract = checkSubstractPattern();
+            bool validSubstract2 = checkSubstractSingleSymbol();
 
             if (validRepeat && validSubstract && validSubstract2)
             {
@@ -74,30 +74,38 @@ namespace MerchantGuideToGalaxy
             }
         }
 
-        private bool checkRepeatPattern(string s)
+        public bool checkRepeatPattern()
         {
+            string s = _s;
+
             int length = s.Length;
             char[] repeatable = { 'I', 'X', 'C', 'M' };
 
-            if (length < 4)
+            // D, L, V can never be repeat
+            if (s.Contains("DD") || s.Contains("LL") || s.Contains("VV"))
             {
-                return true;
+                return false;
             }
 
             else
             {
-                for (int i = 0; i <= length - 4; i++)
+                // If length is less than 4, there would never be more than 3 repeatable characters
+                if (length < 4)
                 {
-                    string test = s.Substring(i, 4);
+                    return true;
+                }
 
-                    if (test.Contains("DD") || test.Contains("LL") || test.Contains("VV"))
+                else
+                {
+                    for (int i = 0; i <= length - 4; i++)
                     {
-                        return false;
-                    }
+                        // Examine the entire string in length-4 segments
 
-                    else
-                    {
-                        // Check double occrence of I, X, C, M
+                        string test = s.Substring(i, 4);
+
+                        // If any of the repeatable character occurs 4 time in a segment
+                        // Return false
+
                         foreach (char c in repeatable)
                         {
                             int occurrences = test.Count(x => x == c);
@@ -109,22 +117,17 @@ namespace MerchantGuideToGalaxy
                         }
                     }
 
+                    // If comes to here, the string is repeat valid
+
+                    return true;
                 }
-
-                return true;
             }
-
-            // Only accept a string of length 4
-            // if 'DD', 'LL', 'VV' exist, return false
-
-            
-
-            
-
         }
 
-        private bool checkSubstractPattern(string s)
+        public bool checkSubstractPattern()
         {
+            string s = _s;
+
             // Rules:
             // "I" can be subtracted from "V" and "X" only
             // "X" can be subtracted from "L" and "C" only. 
@@ -165,8 +168,10 @@ namespace MerchantGuideToGalaxy
             return true;
         }
 
-        private bool checkSubstract2(string s)
+        public bool checkSubstractSingleSymbol()
         {
+            string s = _s;
+
             int length = s.Length;
 
             if (length <= 2)
@@ -188,9 +193,10 @@ namespace MerchantGuideToGalaxy
                         return false;
                     }
                 }
-            }
 
-            return true;
+                return true;
+            }
+                        
         }
         
         public int GetValue()

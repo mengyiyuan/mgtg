@@ -24,8 +24,16 @@ namespace MerchantGuideToGalaxy
 
         public RomanSymbol(char s)
         {
-            _symbol = s;
-            _value = symbolToValue[s];
+            if (symbolToValue.Keys.Contains(s))
+            {
+                _symbol = s;
+                _value = symbolToValue[s];
+            }
+
+            else
+            {
+                throw new ArgumentOutOfRangeException("symbol", "s", "The symbol is not recognized as a Roman Symbol");
+            }
         }
 
         public int GetValue()
